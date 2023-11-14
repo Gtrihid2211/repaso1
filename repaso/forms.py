@@ -5,14 +5,18 @@ from django.core.exceptions import ValidationError
 class FechasForm(forms.Form):
     fecha_inicio = forms.DateField(input_formats=['%d/%m/%Y'],help_text='Formato: dd/mm/yyyy')
     fecha_fin = forms.DateField(input_formats=['%d/%m/%Y'],help_text='Formato: dd/mm/yyyy')
+
+    dias_semana = [
+        ('lunes', 'Lunes'),
+        ('martes', 'Martes'),
+        ('miercoles', 'Miercoles'),
+        ('jueves', 'Jueves'),
+        ('viernes', 'Viernes'),
+        ('sabado', 'Sabado'),
+        ('domingo', 'Domingo'),
+    ]
     dias = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                     choices=[('lunes'),
-                                              ('martes'),
-                                              ('miercoles'),
-                                              ('jueves'),
-                                              ('viernes'),
-                                              ('sabado'),
-                                              ('domingo'),],
+                                     choices=dias_semana,
                                      help_text='Selecciona los días de la semana')
     email = forms.EmailField(help_text='Introduce tu dirección de correo electrónico')
 
